@@ -6,15 +6,15 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: springboot-app
+      app: springboot-aws-app
   template:
     metadata:
       labels:
-        app: springboot-app
+        app: springboot-aws-app
     spec:
       containers:
       - name: my-springboot-app
-        image: myacrrepo4321.azurecr.io/akannan1087/springboot-app:#{Build.BuildId}#
+        image: myacrrepo4321.azurecr.io/akannan1087/springboot-aws-app:#{Build.BuildId}#
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
@@ -24,9 +24,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: springboot-app
-    k8s-app: springboot-app
-  name: springboot-app
+    app: springboot-aws-app
+    k8s-app: springboot-aws-app
+  name: springboot-aws-app
 spec:
   ports:
   - name: http
@@ -35,4 +35,4 @@ spec:
     targetPort: 8085
   type: LoadBalancer
   selector:
-    app: springboot-app
+    app: springboot-aws-app
